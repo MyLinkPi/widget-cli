@@ -19,6 +19,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@mylinkpi/cli-login": "^1.0.1",
     "@mylinkpi/widget-core": "workspace:*",
     "@mylinkpi/widget-react": "workspace:*",
     "@oclif/core": "^4.0.17",

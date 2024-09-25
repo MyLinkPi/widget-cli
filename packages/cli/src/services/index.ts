@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { getAdToken } from "../utils/login.js";
+
 const request = axios.create({
   baseURL: "https://www.ljp.elecwatt.com/",
 });
@@ -30,7 +32,7 @@ export const addWidget = (widget: IWidget) =>
   request({
     data: {
       ...widget,
-      ...BASE_PARAMS,
+      ...getAdToken(),
       config: {},
       org_id: "AEAFED52C0D76BE9369FD617B218B48A",
       public: true,
@@ -46,7 +48,7 @@ export const updateWidget = (widget: IWidget) =>
   request({
     data: {
       ...widget,
-      ...BASE_PARAMS,
+      ...getAdToken(),
       config: {},
       org_id: "AEAFED52C0D76BE9369FD617B218B48A",
       public: true,

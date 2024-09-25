@@ -12,6 +12,7 @@ import {
   uploadScript,
 } from "../services/index-dev.js";
 import { getWidgetConfig } from "../utils/index.js";
+import { loginLinkPi } from "../utils/login.js";
 import { createViteBuildConfig } from "../utils/vite.js";
 
 export default class PublishDev extends Command {
@@ -32,7 +33,7 @@ export default class PublishDev extends Command {
         createViteBuildConfig({
           widgetId: widgetConfig.id,
           widgetTitle: widgetConfig.name,
-        }),
+        })
       );
 
       // 调用上传API
@@ -76,6 +77,11 @@ export default class PublishDev extends Command {
   }
 
   async run() {
+    const isLoginSuccess = await loginLinkPi();
+    if (!isLoginSuccess) {
+      consola.error("Login failed...");
+      this.exit(1);
+    }
     consola.start("Building and publishing the widget...");
     await this.buildAndUpload();
   }
